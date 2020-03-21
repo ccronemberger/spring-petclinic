@@ -4,9 +4,10 @@
 echo JAVA_DEBUG = $JAVA_DEBUG
 echo JAVA_OPTS  = $JAVA_OPTS
 
-if [ -a "app-cds.jsa" ]; then
+if [ -a "$BASE_DIR/app-cds.jsa" ]; then
   echo starting application using CDS
-  java $JAVA_DEBUG $JAVA_OPTS -cp $CLASSPATH_VAR -XX:SharedArchiveFile=app-cds.jsa $MAIN_CLASS $*
+  # trying to use jsa file with Spring Boot jar does not bring any benefits
+  java $JAVA_DEBUG $JAVA_OPTS -cp $CLASSPATH_VAR -XX:SharedArchiveFile=$BASE_DIR/app-cds.jsa $MAIN_CLASS $*
 else
   if [ "$CLASSPATH_VAR" == "$APP_JAR" ]; then
     echo starting application with single jar
