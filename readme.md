@@ -1,3 +1,23 @@
+# Configuration to run Spring Boot application with AppCDS
+
+This was tested with JDK 13.
+For an introduction on what AppCDS is you can start here:
+
+https://docs.oracle.com/en/java/javase/13/vm/class-data-sharing.html
+
+Unfortunately it does not work well with a Spring Boot jar. 
+In this fork of the original PetClinic project I have made changes to allow it to work
+properly.
+
+Here are the steps:
+
+- Disable spring-boot-maven-plugin which is responsible to merging all dependencies in a single executable JAR.
+- Copy all dependencies to the target directory using the maven-dependency-plugin.
+- Create the class CDSOnStartServer with profile cds to stop the application right 
+after its initialization to generate the list of classes that is later used to generate the archive.
+- Run the cds.sh script to generate the jsa archive
+- Use the run.sh script to start the application
+
 # Spring PetClinic Sample Application [![Build Status](https://travis-ci.org/spring-projects/spring-petclinic.png?branch=master)](https://travis-ci.org/spring-projects/spring-petclinic/)
 Deploy this sample application to Pivotal Web Services:
 
