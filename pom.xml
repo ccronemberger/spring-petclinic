@@ -136,14 +136,15 @@
         <artifactId>spring-javaformat-maven-plugin</artifactId>
         <version>${spring-format.version}</version>
         <!-- run ./mvnw spring-javaformat:apply to apply -->
-        <executions>
+        <!-- I don't want to use CRLF separators even on Windows -->
+        <!--executions>
           <execution>
             <phase>validate</phase>
             <goals>
               <goal>validate</goal>
             </goals>
           </execution>
-        </executions>
+        </executions-->
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
